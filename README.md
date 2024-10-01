@@ -1,2 +1,2 @@
 # 2048
-** GUILLET Simon et VERCHERE Pablo **
+**GUILLET Simon et VERCHERE Pablo**
