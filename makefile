@@ -14,7 +14,7 @@ obj/empty_txt.o: src/tile/txt/empty_txt.cpp src/tile/txt/empty_txt.h
 obj/number_txt.o: src/tile/txt/number_txt.cpp src/tile/txt/number_txt.h
 	g++ -c -o obj/number_txt.o src/tile/txt/number_txt.cpp
 
-obj/grid_txt.o: src/grid/txt/grid_txt.cpp src/grid/txt/grid_txt.h
+obj/grid_txt.o: src/grid/txt/grid_txt.cpp src/grid/txt/grid_txt.h src/tile/txt/empty_txt.h
 	g++ -c -o obj/grid_txt.o src/grid/txt/grid_txt.cpp
 
 

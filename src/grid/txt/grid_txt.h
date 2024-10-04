@@ -2,13 +2,13 @@
 #define GRID_TXT_H
 
 
-#include <iostream>
-
 #include "../grid.h"
 
 
 class Grid_txt: public Grid {
 public:
+    Grid_txt(int);
+    
     void display() const override; // abstract method
 };
 

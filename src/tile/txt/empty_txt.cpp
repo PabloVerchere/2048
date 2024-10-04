@@ -7,6 +7,6 @@ void Empty_txt::display() const {
 
 // Overloading the '<<' operator to print the object
 std::ostream& operator<<(std::ostream& os, const Empty_txt& e) {
-    os << " ";
+    os << "123";
     return os;
 }
