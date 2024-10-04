@@ -4,15 +4,11 @@
 
 #include <iostream>
 
-#include "grid.h"
+#include "../grid.h"
 
 
 class Grid_txt: public Grid {
 public:
-    Grid_txt(int);
-    ~Grid_txt();
-
-
     void display() const override; // abstract method
 };
 

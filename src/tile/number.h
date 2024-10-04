@@ -10,13 +10,12 @@ private:
     int value;
 
 public:
-    Number() {}
-    ~Number() {}
-    
+    Number(int);
 
-    int getValue() const {}
 
-    void setValue(int) {}
+    int getValue() const;
+
+    void setValue(int);
 };
 
 #endif

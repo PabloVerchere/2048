@@ -4,10 +4,6 @@
 #include "tile.h"
 
 
-class Empty: public Tile {
-    public:
-        Empty() {};
-        ~Empty() {};
-};
+class Empty: public Tile {};
 
 #endif

@@ -1,9 +1,9 @@
 #include "number.h"
 
 
-Number::Number(): Tile() {};
-Number::~Number() {};
-
+Number::Number(int v) {
+    value = v;
+};
 
 int Number::getValue() const {
     return value;

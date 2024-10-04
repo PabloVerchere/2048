@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "tile.h"
+#include "../tile/tile.h"
 
 
 class Grid {
