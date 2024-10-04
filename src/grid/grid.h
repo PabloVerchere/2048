@@ -12,8 +12,9 @@ class Grid {
         bool win;
         int score;
         int size;
-        std::vector<std::vector<Tile>> grid;
 
+        Tile*** grid; // 2D array of pointers to Tile
+    
 
     public:
         Grid(int);

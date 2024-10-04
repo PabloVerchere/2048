@@ -2,5 +2,10 @@
 
 
 void Grid_txt::display() const {
-    // Display the grid in the terminal
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            (*grid[i][j]).display();
+        }
+        std::cout << std::endl;
+    }
 }
