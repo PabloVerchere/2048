@@ -29,14 +29,17 @@ Grid::~Grid() {
 
 
 bool Grid::move_total(int dir) {
-    bool change;
+    bool change = false;
     bool init = false;
+
+    change = move(dir);
+    change = merge(dir) || change;
+    init = change || init; // if change is true 1 time, init stay true
 
     do {
         change = false;
         change = move(dir);
-        change = merge(dir) || change;
-
+        
         init = change || init; // if change is true 1 time, init stay true
     } while(change);
 
@@ -56,23 +59,25 @@ bool Grid::mergeable(int dir, int coord[2]) const { // 0 is up, 1 is right, 2 is
     int dirV = 0;
 
     if(dir == 0) {
-        dirV = -1;
-    } else if(dir == 1) {
-        dirH = 1;
-    } else if(dir == 2) {
         dirV = 1;
-    } else if(dir == 3) {
+    } else if(dir == 1) {
         dirH = -1;
+    } else if(dir == 2) {
+        dirV = -1;
+    } else if(dir == 3) {
+        dirH = 1;
     }
 
 
-    if(!coord_in_grid(coord) || !coord_in_grid(new int[2]{coord[0] + dirH, coord[1] + dirV})) {
+
+
+    if(!coord_in_grid(coord) || !coord_in_grid(new int[2]{coord[0] + dirV, coord[1] + dirH})) {
         return false;
     }
 
     // Check if both tiles are instances of Number
     Number* firstNumber = dynamic_cast<Number*>(grid[coord[0]][coord[1]]);
-    Number* secondNumber = dynamic_cast<Number*>(grid[coord[0] + dirH][coord[1] + dirV]);
+    Number* secondNumber = dynamic_cast<Number*>(grid[coord[0] + dirV][coord[1] + dirH]);
 
 
     if (firstNumber && secondNumber) { // Both are Numbers, so we can compare their values
@@ -119,11 +124,11 @@ bool Grid::merge(int dir) { // 0 is up, 1 is right, 2 is down, 3 is left
         break;
     
     case 2:
-        return merge_V(1);
+        return merge_V(0);
         break;
 
     case 3:
-        return merge_H(0);
+        return merge_H(1);
         break;
     
     default:
@@ -213,6 +218,14 @@ bool Grid::move_H_row(int dir, int i) { // 0 is right, 1 is left
 
 bool Grid::merge_H_row(int dir, int i) { // 0 is right, 1 is left
     bool change = false;
+    int dir4;
+
+    if(dir) {
+        dir4 = 3;
+    } else {
+        dir4 = 1;
+    }
+
 
     int j = 0;
     int step = 1;
@@ -221,8 +234,8 @@ bool Grid::merge_H_row(int dir, int i) { // 0 is right, 1 is left
         step = -1;
     }
 
-    for(int k = 0; k < size; k++) {
-        if(mergeable(dir, new int[2]{i, j})) {
+    for(int _ = 0; _ < size; _++) {
+        if(mergeable(dir4, new int[2]{i, j})) {
             change = true;
             int coord[2] = {i, j};
 
@@ -273,6 +286,13 @@ bool Grid::move_V_col(int dir, int j) { // 0 is down, 1 is up
 
 bool Grid::merge_V_col(int dir, int j) { // 0 is down, 1 is up
     bool change = false;
+    int dir4;
+
+    if(dir) {
+        dir4 = 0;
+    } else {
+        dir4 = 2;
+    }
 
     int i = 0;
     int step = 1;
@@ -282,7 +302,7 @@ bool Grid::merge_V_col(int dir, int j) { // 0 is down, 1 is up
     }
 
     for(int k = 0; k < size; k++) {
-        if(mergeable(dir, new int[2]{i, j})) {
+        if(mergeable(dir4, new int[2]{i, j})) {
             change = true;
 
             int coord[2] = {i, j};
