@@ -77,10 +77,11 @@ void Grid_txt::play() {
             dir = convert_dir(arrow);
 
             if(dir != -1) { // If the key is an arrow key
-                move_total(dir); 
-                create_rd(); 
-                cout << "\033c";
-                display();
+                if(move_total(dir)) { // If tiles moved
+                    create_rd();
+                    cout << "\033c";
+                    display();
+                }
             }
         }
     }

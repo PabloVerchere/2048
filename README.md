@@ -5,5 +5,6 @@
 verify #include and mk
 clean up
 
-create even when no move
+
 merge in oposite way
+and all the time

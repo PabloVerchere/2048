@@ -27,7 +27,7 @@ class Grid {
         virtual void play() = 0; // abstract method
 
 
-        void move_total(int); // take a direction and move then merge the tiles while possible
+        bool move_total(int); // take a direction and move then merge the tiles while possible
 
         void exchange(int[2], int[2]); // exchange 2 tiles in the grid
 

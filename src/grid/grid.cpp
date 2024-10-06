@@ -28,14 +28,19 @@ Grid::~Grid() {
 }
 
 
-void Grid::move_total(int dir) {
+bool Grid::move_total(int dir) {
     bool change;
+    bool init = false;
 
     do {
         change = false;
         change = move(dir);
         change = merge(dir) || change;
+
+        init = change || init; // if change is true 1 time, init stay true
     } while(change);
+
+    return init;
 }
 
 
