@@ -7,9 +7,12 @@
 #include "../empty.h"
 
 
+
 class Empty_txt: public Empty {
     public:
-        virtual void display() const override; // abstract method
+        Empty_txt* clone() const override;
+
+        void display() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Empty_txt&);

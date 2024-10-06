@@ -7,9 +7,13 @@
 #include "../number.h"
 
 
+
 class Number_txt: public Number {
     public:
-        virtual void display() const override; // abstract method
+        Number_txt(int v);
+
+
+        void display() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Number_txt& n);

@@ -1,5 +1,9 @@
 # 2048
 **GUILLET Simon et VERCHERE Pablo**
 
-# 2suppr
-vector in grid
+/!\ memory leak when creating new ...
+verify #include and mk
+clean up
+
+create even when no move
+merge in oposite way

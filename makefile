@@ -27,7 +27,7 @@ obj/number.o: src/tile/number.cpp src/tile/number.h
 obj/tile.o: src/tile/tile.cpp src/tile/tile.h
 	g++ -fPIE -c -o obj/tile.o src/tile/tile.cpp
 
-obj/grid.o: src/grid/grid.cpp src/grid/grid.h
+obj/grid.o: src/grid/grid.cpp src/grid/grid.h src/tile/number.h
 	g++ -fPIE -c -o obj/grid.o src/grid/grid.cpp
 
 

@@ -2,17 +2,16 @@
 #define GRID_H
 
 
-#include <vector>
-
 #include "../tile/tile.h"
+#include "../tile/empty.h"
+
 
 
 class Grid {
     protected:
-        bool win;
-        int score;
         int size;
-
+        int generable[2] = {2, 4}; // temp
+        Empty* empty;
         Tile*** grid; // 2D array of pointers to Tile
     
 
@@ -20,18 +19,45 @@ class Grid {
         Grid(int);
         ~Grid();
 
-        bool is_loose() const;
 
-        int getScore() const;
-
-        const std::vector<std::vector<Tile>>& getGrid() const;
-
-        void move(int);
-
-        void merge(int[2], int); // take a list of two coordinates and a direction
-
+        virtual void create_rd() = 0; // abstract method
 
         virtual void display() const = 0; // abstract method
+
+        virtual void play() = 0; // abstract method
+
+
+        void move_total(int); // take a direction and move then merge the tiles while possible
+
+        void exchange(int[2], int[2]); // exchange 2 tiles in the grid
+
+        bool mergeable(int, int[2]) const; // take a direction and a list of two coordinates
+        
+        bool move(int);
+        bool merge(int);
+
+        bool move_H(int);
+        bool merge_H(int);
+
+        bool move_V(int);
+        bool merge_V(int);
+
+        bool move_H_row(int, int);
+        bool merge_H_row(int, int);
+
+        bool move_V_col(int, int);
+        bool merge_V_col(int, int);
+
+        int convert_dir(int); // convert a direction to a number
+
+        bool mergeable_all_direction(int[2]) const;
+
+        bool empty_in_grid() const;
+        bool mergeable_in_grid() const;
+
+        bool is_loose() const;
+
+        bool coord_in_grid(int[2]) const;
 };
 
 #endif // GRID_H

@@ -1,8 +1,8 @@
 #ifndef NUMBER_H
 #define NUMBER_H
 
-
 #include "tile.h"
+
 
 
 class Number: public Tile {
