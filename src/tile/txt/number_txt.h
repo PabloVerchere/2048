@@ -14,6 +14,9 @@ class Number_txt: public Number {
 
 
         void display() const;
+
+        void setColor() const;
+        void resetColor() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Number_txt& n);
