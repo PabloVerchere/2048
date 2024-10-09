@@ -187,29 +187,31 @@ bool Grid::merge_V(int dir) { // 0 is down, 1 is up
 bool Grid::move_H_row(int dir, int i) { // 0 is right, 1 is left
     bool change = false;
 
-    int j = 0;
+    int ex = size -2;
     int step = 1;
     if(dir == 1) {
-        j = size - 1;
+        ex = 2;
         step = -1;
     }
+    int cur;
     
-    for(int _ = 0; _ < size; _++) {
-        if(j + step >= 0 && j + step < size && dynamic_cast<Number*>(grid[i][j])) {
-            int coord[2] = {i, j};
+    for(int _ = 0; _ < size -1; _++) {
+        if(coord_in_grid(new int[2]{i, ex}) && dynamic_cast<Number*>(grid[i][ex])) {
+            int coord[2] = {i, ex};
+            cur = ex;
 
             // while the next tile is in the grid and is empty
-            while(j + step >= 0 && j + step < size && dynamic_cast<Empty*>(grid[i][j + step])) {
+            while(coord_in_grid(new int[2]{i, cur + step}) && dynamic_cast<Empty*>(grid[i][cur + step])) {
                 change = true;
-                exchange(coord, new int[2]{i, j + step});
+                exchange(coord, new int[2]{i, cur + step});
                 coord[0] = i;
-                coord[1] = j + step;
+                coord[1] = cur + step;
 
                 
-                j += step;
+                cur += step;
             }
         }
-        j += step;
+        ex -= step;
     }
 
     return change;
@@ -256,28 +258,31 @@ bool Grid::merge_H_row(int dir, int i) { // 0 is right, 1 is left
 bool Grid::move_V_col(int dir, int j) { // 0 is down, 1 is up
     bool change = false;
 
-    int i = 0;
+    int ex = size -2;
     int step = 1;
     if(dir == 1) {
-        i = size - 1;
+        ex = 2;
         step = -1;
     }
-
-    for(int k = 0; k < size; k++) {
-        if(i + step >= 0 && i + step < size && dynamic_cast<Number*>(grid[i][j])) {
-            int coord[2] = {i, j};
+    int cur;
+    
+    for(int _ = 0; _ < size -1; _++) {
+        if(coord_in_grid(new int[2]{ex, j}) && dynamic_cast<Number*>(grid[ex][j])) {
+            int coord[2] = {ex, j};
+            cur = ex;
 
             // while the next tile is in the grid and is empty
-            while(i + step >= 0 && i + step < size && dynamic_cast<Empty*>(grid[i + step][j])) {
+            while(coord_in_grid(new int[2]{cur + step, j}) && dynamic_cast<Empty*>(grid[cur + step][j])) {
                 change = true;
-                exchange(coord, new int[2]{i + step, j});
-                coord[0] = i + step;
+                exchange(coord, new int[2]{cur + step, j});
+                coord[0] = cur + step;
                 coord[1] = j;
 
-                i += step;
+                
+                cur += step;
             }
         }
-        i += step;
+        ex -= step;
     }
 
     return change;
