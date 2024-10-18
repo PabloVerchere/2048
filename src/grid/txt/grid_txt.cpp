@@ -68,7 +68,9 @@ void Grid_txt::play() {
 
     cout << "\033c"; // Clear screen
 
-    create_rd();  // Create the initial random cell
+    create_rd(); // Create the 2 initial random cell
+    create_rd();
+    
     display(); // Display the grid
   
     while (!is_loose()) {
